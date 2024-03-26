@@ -114,13 +114,16 @@
 								<h4>Tarefas pendentes</h4>
 								<hr />
 								<div class="row mb-3 d-flex align-items-center">
-									<div class="col-sm-4">
+									<div class="col-sm-3">
 										<h5>Tarefa</h5>
 									</div>
-									<div class="col-sm-4">
+									<div class="col-sm-3">
 										<h5>Data de Criação</h5>
 									</div>
-									<div class="col-sm-4">
+									<div class="col-sm-3">
+										<h5>Prioridade</h5>
+									</div>
+									<div class="col-sm-3">
 										<select id="ordenarPor" class="form-select form-select-lg rounded mb-3 border-success focus-success" onchange="ordenarTarefas()">
 											<option value="data_cadastrado">Data de Criação</option>
 											<option value="prioridade">Prioridade</option>
@@ -133,13 +136,16 @@
 
 								<?php foreach($tarefas as $indice => $tarefa) { ?>
 									<div class="row mb-3 d-flex align-items-center tarefa">
-										<div class="col-sm-4" id="tarefa_<?= $tarefa->id ?>">
+										<div class="col-sm-3" id="tarefa_<?= $tarefa->id ?>">
 											<?= $tarefa->tarefa ?>
 										</div>
-										<div class="col-sm-4">
+										<div class="col-sm-3">
 											<?= $tarefa->data_cadastrado ?>
 										</div>
-										<div class="col-sm-4 mt-2 d-flex justify-content-between">
+										<div class="col-sm-3">
+											<?= $tarefa->prioridade ?>
+										</div>
+										<div class="col-sm-3 mt-2 d-flex justify-content-between">
 											<i class="fas fa-trash-alt fa-lg text-danger" onclick="remover(<?= $tarefa->id ?>)"></i>
 											<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>, '<?= $tarefa->tarefa ?>')"></i>
 											<i class="fas fa-check-square fa-lg text-success" onclick="marcarRealizada(<?= $tarefa->id ?>)"></i>

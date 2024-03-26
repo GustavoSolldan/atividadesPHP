@@ -5,6 +5,7 @@ class Tarefa {
 	private $id_status;
 	private $tarefa;
 	private $data_cadastro;
+	private $prioridade;
 
 	public function __get($atributo) {
 		return $this->$atributo;

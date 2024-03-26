@@ -61,7 +61,7 @@ class TarefaService {
 	public function recuperarTarefasPendentes() {
 		$query = '
 			select 
-				t.id, s.status, t.tarefa, t.data_cadastrado 
+				t.id, s.status, t.tarefa, t.data_cadastrado, t.prioridade
 			from 
 				tb_tarefas as t
 				left join tb_status as s on (t.id_status = s.id)
@@ -75,25 +75,27 @@ class TarefaService {
 	}
 	public function ordenarTarefas($criterio) {
 		$query = '
-			select 
-				t.id, s.status, t.tarefa 
-			from 
-				tb_tarefas as t
-				left join tb_status as s on (t.id_status = s.id)
-			order by ';
-	
+			SELECT 
+				t.id, s.status, t.tarefa, t.data_cadastrado, t.prioridade
+			FROM 
+				tb_tarefas AS t
+				LEFT JOIN tb_status AS s ON (t.id_status = s.id)
+			ORDER BY ';
+		
 		switch ($criterio) {
 			case 'data_cadastrado':
-				$query .= 't.data_cadastrado ASC'; // Supondo que a coluna de data de criação seja 'data_criacao'
+				$query .= 't.data_cadastrado ASC';
 				break;
 			case 'prioridade':
-				$query .= 't.prioridade DESC'; // Supondo que a coluna de prioridade seja 'prioridade' e você queira ordenar do maior para o menor
+				$query .= 't.prioridade DESC';
 				break;
 			default:
 				// Caso o critério não seja reconhecido, ordena por padrão pela data de criação
 				$query .= 't.data_cadastrado ASC';
 				break;
 		}
+		
+		var_dump($query); // Adicione esta linha para depurar a consulta SQL
 	
 		$stmt = $this->conexao->prepare($query);
 		$stmt->execute();

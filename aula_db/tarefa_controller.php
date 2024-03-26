@@ -86,7 +86,8 @@
 		$tarefas = $tarefaService->recuperarTarefasPendentes();
 	}
 	else if($acao == 'ordenar') {
-		$criterio = isset($_GET['criterio']) ? $_GET['criterio'] : 'data_criacao';
+		$criterio = isset($_GET['criterio']) ? $_GET['criterio'] : 'data_cadastrado';
+		echo "Critério de ordenação: " . $criterio; // Adicione esta linha para depurar
 		$tarefa = new Tarefa();
 		$conexao = new Conexao();
 	
